@@ -1,0 +1,20 @@
+Laravel VSCode Extention
+1. larevel blade snippet 	:syntac support
+2. laravel blade spacer		:spacing support
+3. php intelephense		:php support
+4. php namespace resolver	:importir class 
+
+xampp setup
+1. Apache -> Config -> php.ini
+2. find extension=zip
+3. find extension=fileinfo
+
+laravel setup
+1. composer create-project laravel/laravel="11.*" .
+
+todos table schema
+1. id 		-> string (pk)
+2. task 	-> varchar (255)
+3. is_done 	-> boolean
+4. updated_at	-> timestamp
+5. created_at	-> timestamp
