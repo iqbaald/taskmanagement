@@ -2,19 +2,22 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SessionController;
-use App\Http\Controllers\Todo\TodoController;
+use App\Http\Controllers\Todo\AdminTodoController;
+use App\Http\Controllers\Todo\UserTodoController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [HomeController::class, 'index']);
 
 Route::middleware(['auth'])->group(function() {
-    Route::get('/todo',[TodoController::class,'index'])->name('todo');
-    Route::post('/todo',[TodoController::class,'store'])->name('todo.post');
-    Route::put('/todo/{id}',[TodoController::class,'update'])->name('todo.update');
-    Route::delete('/todo/{id}',[TodoController::class,'destroy'])->name('todo.delete');
-    Route::get('/todo/{role}', [TodoController::class, 'showTasksByRole'])->name('todo.role');
-    Route::post('/todo/{role}', [TodoController::class, 'storeWithRole'])->name('todo.role.post');
+    Route::get('/todo',[UserTodoController::class,'index'])->name('todo');
+    Route::put('/todo/{id}',[UserTodoController::class,'update'])->name('todo.update');
+    
+    // Admin Route
+    Route::get('/todo/{role}', [AdminTodoController::class, 'showTasksByRole'])->name('admin.todo.role');
+    Route::put('/todo/{id}/up',[AdminTodoController::class,'updateAdmin'])->name('admin.todo.update');
+    Route::delete('/todo/{id}',[AdminTodoController::class,'destroy'])->name('admin.todo.delete');
+    Route::post('/todo/{role}', [AdminTodoController::class, 'storeWithRole'])->name('admin.todo.role.post');
 });
 
 Auth::routes();

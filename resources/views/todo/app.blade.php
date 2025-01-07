@@ -13,7 +13,7 @@
                     @include('components/message')
 
                     <!-- 02. Form input data -->
-                        <form id="todo-form" action="{{ route('todo.role.post', ['role' => $role]) }}" method="post">
+                        <form id="todo-form" action="{{ route('admin.todo.role.post', ['role' => $role]) }}" method="post">
                         @csrf
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="task" id="todo-input"
@@ -28,7 +28,7 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- 03. Searching -->
-                        {{-- <form id="todo-form" action="{{ route('todo') }}" method="get">
+                        {{-- <form id="todo-form" action="{{ route('admin.todo.search') }}" method="get">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="search" value="{{ request('search') }}" 
                                     placeholder="masukkan kata kunci">
@@ -51,7 +51,7 @@
                                 <input type="text" class="form-control edit-input" style="display: none;"
                                     value="{{ $item->task }}">
                                 <div class="btn-group">
-                                    <form action="{{ route('todo.delete',['id'=>$item->id]) }}" method="POST"
+                                    <form action="{{ route('admin.todo.delete',['id'=>$item->id]) }}" method="POST"
                                         onsubmit="return confirm('Apakah yakin akan dihapus?')">
                                         @csrf
                                         @method('DELETE')
@@ -65,13 +65,12 @@
                             </li>
                             <!-- 05. Update Data -->
                             <li class="list-group-item collapse" id="collapse-{{ $loop->index }}">
-                                <form action="{{ route('todo.update',['id'=>$item->id]) }}" method="POST">
+                                <form action="{{ route('admin.todo.update',['id'=>$item->id]) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div>
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" name="task"
-                                                value="{{ $item->task }}">
+                                            <input type="text" class="form-control" name="task" value="{{ $item->task }}">
                                             <button class="btn btn-outline-primary" type="sumbit">Update</button>
                                         </div>
                                     </div>
