@@ -7,7 +7,7 @@
             <div class="login-card">
                 <div>
                     <div>
-                        <a href="#" class="logo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzhO3LMNK3gzbpFJ1p4Go-SFxXDqPnDBWVKQ&s" alt="jspace-logo"></a>
+                        <a href="#" class="logo"><img src="/assets/img/logoweb.png" alt="jspace-logo"></a>
                     </div>
                     <div class="login-main">
                         <form class="theme-form" method="POST" action="{{ route('login') }}">
