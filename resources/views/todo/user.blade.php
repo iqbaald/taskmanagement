@@ -32,23 +32,56 @@
                                 </span>
 
                                 <div class="btn-group">
-                                    <form action="{{ route('todo.update',['id'=>$item->id]) }}" method="POST" class="update-form">
+                                    <div>
+                                        <button class="btn btn-primary btn-sm edit-btn" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse-{{ $loop->index }}" aria-expanded="false">✎</button>
+                                    </div>
+                                </div>
+                                <li class="list-group-item collapse" id="collapse-{{ $loop->index }}">
+                                    <form action="{{ route('todo.update', $item->id) }}" method="POST" class="update-form bg-light" enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
-                                        <div class="d-flex">
-                                            <div class="radio px-2">
-                                                <label>
-                                                    <input type="radio" value="1" name="is_done" {{ $item->is_done == '1' ? 'checked' : '' }} onchange="submitForm(this)"> Selesai
-                                                </label>
-                                            </div>
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" value="0" name="is_done" {{ $item->is_done == '0' ? 'checked' : '' }} onchange="submitForm(this)"> Belum
-                                                </label>
-                                            </div>
+
+                                        @if ($item->admin_feedback)
+                                        <div class="mb-3">
+                                            <label for="adminFeedback" class="form-label fw-bold">Feedback</label>
+                                            <textarea 
+                                                name="admin_feedback" 
+                                                id="adminFeedback" 
+                                                class="form-control" 
+                                                rows="4" 
+                                                readonly>{{ $item->admin_feedback }}</textarea>
+                                        </div>
+                                        @endif
+                                        <div class="mb-3">
+                                            <label for="userComent" class="form-label fw-bold">Keterangan</label>
+                                            <textarea 
+                                                name="user_comment" 
+                                                id="userComent" 
+                                                class="form-control" 
+                                                placeholder="Tulis keterangan bahwa sudah menyelesaikan tugas" 
+                                                rows="4">{{ $item->user_comment }}</textarea>
+                                        </div>
+                                    
+                                        <div class="mb-3">
+                                            <label for="todoPhoto" class="form-label fw-bold">Bukti Pengerjaan</label>
+                                            <input 
+                                                type="file" 
+                                                class="form-control" 
+                                                id="todoPhoto" 
+                                                name="proof_file_path" 
+                                                accept="image/*">
+                                            <div class="form-text">Maksimal ukuran foto 2 MB</div>
+                                        </div>
+                                    
+                                        <div class="mb-3">
+                                            <button 
+                                                type="submit" 
+                                                class="btn btn-primary w-100">
+                                                Kirim
+                                            </button>
                                         </div>
                                     </form>
-                                </div>
                             </li>
                             
                             @endforeach

@@ -12,8 +12,9 @@ class AdminTodoController extends Controller
     public function updateAdmin(Request $request, string $id)
     {
         $request->validate([
-            'task' => 'required|min:3|max:20',
+            'task' => 'required|min:3|max:40',
             'is_done' => 'required|boolean',
+            'admin_feedback' => 'nullable|string'
         ], [
             'task.required' => 'Isian Wajib Diisi',
             'task.min' => 'Isian Minimal 3 karakter',
@@ -25,6 +26,7 @@ class AdminTodoController extends Controller
         $todo->update([
             'task' => $request->input('task'),
             'is_done' => $request->input('is_done'),
+            'admin_feedback' => $request->input('admin_feedback'),
         ]);
     
         $previousUrl = $request->headers->get('referer');

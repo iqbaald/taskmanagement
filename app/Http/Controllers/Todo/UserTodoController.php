@@ -36,20 +36,43 @@ class UserTodoController extends Controller
         return view('todo.user', compact('data'));
     }
 
+    private function processProductName($name)
+    {
+        $words = explode(' ', $name);
+        $firstTwoWords = array_slice($words, 0, 2);
+        $processedName = implode('-', $firstTwoWords);
+        return strtolower($processedName);
+    }
+
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'is_done' => 'required|boolean'
+            'user_comment' => 'required|string|min:5',
+            'proof_file_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $todo = Todo::findOrFail($id);
+        $fileName = null;
 
-        $data = [
-            'task' => $todo->task,
-            'is_done'=> $request->input('is_done'),
-        ];
+        if ($request->hasFile('proof_file_path')) {
+            $processedName = $this->processProductName($request->user_comment);
+            $image = $request->file('proof_file_path');
+            $fileExtension = $image->getClientOriginalExtension();
+            $fileName = $processedName . '-' . rand(100, 999) . '.' . $fileExtension;
 
-        Todo::where('id',$id)->update($data);
+            $location = public_path('assets/img/todo');
+            $image->move($location, $fileName);
+
+            if ($request->proof_file_path && file_exists(public_path('img/todo/' . $request->proof_file_path))) {
+                unlink(public_path('img/todo/' . $request->proof_file_path));
+            }
+        }
+
+        $todo->user_comment = $request->user_comment;
+        $todo->proof_file_path = $fileName;
+
+        $todo->save();
+
         return redirect()->route('todo')->with('success', 'Task berhasil diperbarui');
     }
 }

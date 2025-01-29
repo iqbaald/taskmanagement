@@ -65,28 +65,86 @@
                             </li>
                             <!-- 05. Update Data -->
                             <li class="list-group-item collapse" id="collapse-{{ $loop->index }}">
-                                <form action="{{ route('admin.todo.update',['id'=>$item->id]) }}" method="POST">
+                                <form action="{{ route('admin.todo.update', ['id' => $item->id]) }}" method="POST" class="bg-light">
                                     @csrf
                                     @method('PUT')
-                                    <div>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" name="task" value="{{ $item->task }}">
-                                            <button class="btn btn-outline-primary" type="sumbit">Update</button>
+                                
+                                    <div class="mb-3">
+                                        <label for="task" class="form-label fw-bold">Tugas</label>
+                                        <div class="input-group">
+                                            <input 
+                                                type="text" 
+                                                class="form-control" 
+                                                name="task" 
+                                                id="task" 
+                                                value="{{ $item->task }}" 
+                                                placeholder="Masukkan deskripsi tugas">
                                         </div>
                                     </div>
-                                    <div class="d-flex">
-                                        <div class="radio px-2">
-                                            <label>
-                                                <input type="radio" value="1" name="is_done" {{ $item->is_done == '1' ? 'checked' : '' }}> Selesai
-                                            </label>
+                                
+                                    <div class="mb-3">
+                                        <label for="userComent" class="form-label fw-bold">Keterangan</label>
+                                        <input 
+                                            name="user_comment" 
+                                            id="userComent" 
+                                            class="form-control" 
+                                            placeholder="Tugas belum dikerjakan" 
+                                            rows="4" 
+                                            readonly>{{ $item->user_comment }}</input>
+                                    </div>
+                                
+                                    @if ($item->proof_file_path)
+                                        <div class="mb-3 d-flex flex-column">
+                                            <label class="form-label fw-bold">Bukti Pengerjaan</label>
+                                            <img 
+                                                src="{{ asset('/assets/img/todo/' . $item->proof_file_path) }}" 
+                                                alt="{{ $item->task }}" 
+                                                class="img-fluid rounded" 
+                                                style="width: 300px;">
                                         </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" value="0" name="is_done" {{ $item->is_done == '0' ? 'checked' : '' }}> Belum
-                                            </label>
+                                    @endif
+                                
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Status</label>
+                                        <div class="d-flex">
+                                            <div class="form-check me-3">
+                                                <input 
+                                                    type="radio" 
+                                                    class="form-check-input" 
+                                                    name="is_done" 
+                                                    id="done" 
+                                                    value="1" 
+                                                    {{ $item->is_done == '1' ? 'checked' : '' }}>
+                                                <label for="done" class="form-check-label">Selesai</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input 
+                                                    type="radio" 
+                                                    class="form-check-input" 
+                                                    name="is_done" 
+                                                    id="not_done" 
+                                                    value="0" 
+                                                    {{ $item->is_done == '0' ? 'checked' : '' }}>
+                                                <label for="not_done" class="form-check-label">Belum</label>
+                                            </div>
                                         </div>
+                                    </div>
+                                
+                                    <div class="mb-3">
+                                        <label for="adminFeedback" class="form-label fw-bold">Feedback</label>
+                                        <textarea 
+                                            name="admin_feedback" 
+                                            id="adminFeedback" 
+                                            class="form-control" 
+                                            rows="4" 
+                                            placeholder="Masukkan feedback untuk pengguna">{{ $item->admin_feedback }}</textarea>
+                                    </div>
+                                
+                                    <div class="mt-4">
+                                        <button type="submit" class="btn btn-primary w-100">Update</button>
                                     </div>
                                 </form>
+                                
                             </li>
                             @endforeach
                         </ul>
