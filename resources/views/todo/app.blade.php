@@ -90,7 +90,8 @@
                                             class="form-control" 
                                             placeholder="Tugas belum dikerjakan" 
                                             rows="4" 
-                                            readonly>{{ $item->user_comment }}</input>
+                                            value="{{ $item->user_comment }}"
+                                            readonly>
                                     </div>
                                 
                                     @if ($item->proof_file_path)

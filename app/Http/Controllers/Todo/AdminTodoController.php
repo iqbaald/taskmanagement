@@ -12,13 +12,13 @@ class AdminTodoController extends Controller
     public function updateAdmin(Request $request, string $id)
     {
         $request->validate([
-            'task' => 'required|min:3|max:40',
+            'task' => 'required|min:3|max:100',
             'is_done' => 'required|boolean',
             'admin_feedback' => 'nullable|string'
         ], [
             'task.required' => 'Isian Wajib Diisi',
             'task.min' => 'Isian Minimal 3 karakter',
-            'task.max' => 'Isian Maksimal 20 karakter',
+            'task.max' => 'Isian Maksimal 50 karakter',
         ]);
     
         $todo = Todo::findOrFail($id);
@@ -52,7 +52,7 @@ class AdminTodoController extends Controller
 
     public function showTasksByRole($role) 
     {
-        $data = Todo::where('role', $role)->paginate(10); 
+        $data = Todo::where('role', $role)->orderby('updated_at', 'desc')->paginate(10); 
         $user = Auth::user(); 
 
         return view('todo.app', compact('data', 'role','user'));
@@ -63,11 +63,11 @@ class AdminTodoController extends Controller
         $role = request()->segment(2);
         
         $request->validate([
-            'task' => 'required|min:3|max:20',
+            'task' => 'required|min:3|max:50',
         ], [
             'task.required' => 'Isian Wajib Diisi',
             'task.min' => 'Isian Minimal 3 karakter',
-            'task.max' => 'Isian Maksimal 20 karakter',
+            'task.max' => 'Isian Maksimal 50 karakter',
         ]);
     
         $data = [

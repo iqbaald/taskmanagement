@@ -12,23 +12,40 @@ class UserTodoController extends Controller
     public function index()
     {
         $max_data = 10;
-
         $user = Auth::user();
-
         $query = Todo::where('role', $user->role);
+
+        if (request('status') && request('status') != 'all') {
+            if (request('status') == 'done') {
+                $query->where('is_done', 1);
+            } else {
+                $query->where('is_done', 0);
+            }
+        }
+
+        if (request('year') && request('year') != 'all') {
+            $query->whereYear('created_at', request('year'));
+        }
+
+        if (request('date')) {
+            $query->whereDate('created_at', request('date'));
+        }
 
         if (request('search')) {
             $searchTerm = request()->input('search');
             $query->where('task', 'like', '%' . $searchTerm . '%');
         }
 
-        $data = $query->orderBy('task', 'asc')->paginate($max_data)->withQueryString();
+        $data = $query->orderBy('updated_at', 'desc')->paginate($max_data)->withQueryString();
 
-            return view('todo.user', compact('data', 'user'));  
-    }   
+        $years = Todo::selectRaw('YEAR(created_at) as year')->distinct()->pluck('year');
+
+        return view('todo.user', compact('data', 'user', 'years'));
+    }
+
 
     public function search()
-    {
+    {   
         $searchTerm = request()->input('search');
 
         $data = Todo::where('task', 'like', '%' . $searchTerm . '%')->paginate(10);

@@ -33,7 +33,7 @@
                                     @include('components/task_count')
                                 </td>
                                 <td class="align-middle">
-                                    <a href="{{ url('todo/' . $user->role) }}" class="btn btn-primary">View Task</a>
+                                    <a href="{{ url('todo/' . $user->id) }}" class="btn btn-primary">View Task</a>
                                 </td>
                             </tr>
                         @endforeach

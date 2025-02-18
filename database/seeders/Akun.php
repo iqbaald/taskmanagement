@@ -15,7 +15,6 @@ class Akun extends Seeder
     {
         $data = [
             [
-                'name' => 'Tia',
                 'username' => 'Tia',
                 'email' => 'email3@gmail.com',
                 'password' => bcrypt('1234'),
@@ -24,7 +23,6 @@ class Akun extends Seeder
                 'role' => 1,
             ],
             [
-                'name' => 'Iqbaal',
                 'username' => 'Iqbaal',
                 'email' => 'email4@gmail.com',
                 'password' => bcrypt('1234'),
@@ -33,7 +31,6 @@ class Akun extends Seeder
                 'role' => 2,
             ],
             [
-                'name' => 'Dhimas',
                 'username' => 'Dhimas',
                 'email' => 'email1@gmail.com',
                 'password' => bcrypt('1234'),
@@ -42,7 +39,6 @@ class Akun extends Seeder
                 'role' => 3,
             ],
             [
-                'name' => 'Litha',
                 'username' => 'Litha',
                 'email' => 'email5@gmail.com',
                 'password' => bcrypt('1234'),

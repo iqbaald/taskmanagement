@@ -30,8 +30,13 @@
             @include('components/navbar')
         @endif
 
-        <main class="py-4  h-100 gradient-custom-2">
+        <main class="pt-4 h-100 gradient-custom-2">
             @yield('content')
+            <footer class="footer">
+                <div class="container">
+                    <div class="m-0 text-center">J-Tools | © 2025 All rights reserved. | Designed & Developed by <a href="https://iqbaald.github.io/portfolio-web/" class="text-decoration-none text-white fw-semibold">Iqbaal Dhoifulloh</a></div>
+                </div>
+            </footer>
         </main>
     </div>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

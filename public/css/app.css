@@ -1,3 +1,17 @@
+.footer {
+    background: #030303;
+    padding: 2rem 0;
+    margin-bottom: 0;
+    margin-top: 2rem;
+    color: #dfdfdf;
+}
+
+.filter-box {
+    border: 1px solid #d6d6d6;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
 .mask-custom {
     background: rgba(24, 24, 16, 0.2);
     border-radius: 2em;
@@ -41,7 +55,6 @@ body {
     border-radius: 10px;
     -webkit-box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
     box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
-    margin: 0 auto;
     background: #fff;
 }
 
@@ -96,6 +109,38 @@ body {
     padding: 12px 10px;
 }
 
+.guide-card {
+    background: white;
+    border-radius: 10px;
+    backdrop-filter: blur(25px);
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    background-clip: padding-box;
+    box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+    padding: 30px;
+    max-width: 450px;
+    color: #000;
+}
+
+.guide-content h4 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.guide-content p {
+    font-size: 14px;
+    color: #585858;
+}
+
+.guide-content ul {
+    padding-left: 20px;
+}
+
+.guide-content li {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
 .btn {
     display: inline-block;
     padding: 0.5rem 1.75rem !important;
@@ -111,6 +156,19 @@ body {
     color: #fff;
     background-color: #ecaeff !important;
     border-color: #cf67ef;
+}
+
+.btx-s {
+    border: 1px solid #cf67ef;
+    padding: 0.6rem 1.75rem;
+    background: transparent;
+    color: #cf67ef;
+    border-radius: 8px;
+    text-decoration: #cf67ef;
+}
+
+.btx-s:hover {
+    color: #cf67ef !important;
 }
 
 .todo-list li {
@@ -349,13 +407,24 @@ a:hover {
     color: #000;
 }
 
-@media (max-width: 768px) {
-    .col-md-4 {
-        width: 95% !important;
-    }
+.duo-card {
+    margin: 0 auto;
+    grid-gap: 24px;
+    justify-content: center;
 }
 
 @media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .login-card,
+    .guide-card {
+        width: 100%;
+        max-width: none;
+    }
+
     .col-md-4 {
         width: 95% !important;
     }
