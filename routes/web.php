@@ -14,10 +14,10 @@ Route::middleware(['auth'])->group(function() {
     Route::put('/todo/{id}',[UserTodoController::class,'update'])->name('todo.update');
     
     // Admin Route
-    Route::get('/todo/{role}', [AdminTodoController::class, 'showTasksByRole'])->name('admin.todo.role');
+    Route::get('/todo/{user_id}', [AdminTodoController::class, 'showTasksByRole'])->name('admin.todo.role');
     Route::put('/todo/{id}/up',[AdminTodoController::class,'updateAdmin'])->name('admin.todo.update');
     Route::delete('/todo/{id}',[AdminTodoController::class,'destroy'])->name('admin.todo.delete');
-    Route::post('/todo/{role}', [AdminTodoController::class, 'storeWithRole'])->name('admin.todo.role.post');
+    Route::post('/todo/{user_id}', [AdminTodoController::class, 'storeWithRole'])->name('admin.todo.userId.post');
 });
 
 Auth::routes();

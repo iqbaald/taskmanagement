@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('profile_picture_link');
+            $table->string('profile_picture_link')->nullable();
             $table->bigInteger('role')->default(4);
             $table->integer('task_count')->default(0);
             $table->rememberToken();

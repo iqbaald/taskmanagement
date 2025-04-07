@@ -12,8 +12,8 @@
                     <table class="table table-striped text-white mb-0">
                     <thead>
                         <tr>
-                        <th scope="col">Nama</th>
-                        <th scope="col"> </th>
+                            <th scope="col">Nama</th>
+                            <th scope="col"> </th>
                         <th scope="col">Role</th>
                         <th scope="col">Level Kesibukan</th>
                         </tr>
@@ -24,7 +24,7 @@
                                 <th>
                                     <img src="{{ $user->profile_picture_link }}"
                                     alt="avatar 1" style="width: 45px; height: auto;">
-                                    <span class="ms-2">{{ $user->name }}</span>
+                                    <span class="ms-2">{{ $user->username }}</span>
                                 </th>
                                 <td class="align-middle">
                                     @include('components/role')

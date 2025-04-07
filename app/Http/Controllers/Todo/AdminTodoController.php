@@ -50,17 +50,17 @@ class AdminTodoController extends Controller
     }
 
 
-    public function showTasksByRole($role) 
+    public function showTasksByRole($user_id) 
     {
-        $data = Todo::where('role', $role)->orderby('updated_at', 'desc')->paginate(10); 
+        $data = Todo::where('user_id', $user_id)->orderby('updated_at', 'desc')->paginate(10); 
         $user = Auth::user(); 
 
-        return view('todo.app', compact('data', 'role','user'));
+        return view('todo.app', compact('data', 'user_id','user'));
     }
 
     public function storeWithRole(Request $request) 
     {
-        $role = request()->segment(2);
+        $user_id = request()->segment(2);
         
         $request->validate([
             'task' => 'required|min:3|max:50',
@@ -72,12 +72,12 @@ class AdminTodoController extends Controller
     
         $data = [
             'task' => $request->input('task'),
-            'role' => $role, 
+            'user_id' => $user_id, 
         ];
     
         Todo::create($data);
     
-        return redirect()->route('admin.todo.role', ['role' => $role])->with('success', 'Task Berhasil Diubah!');
+        return redirect()->route('admin.todo.role', ['user_id' => $user_id])->with('success', 'Task Berhasil Diubah!');
     }
 }
 

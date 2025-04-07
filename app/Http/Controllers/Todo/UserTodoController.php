@@ -13,7 +13,7 @@ class UserTodoController extends Controller
     {
         $max_data = 10;
         $user = Auth::user();
-        $query = Todo::where('role', $user->role);
+        $query = Todo::where('user_id', $user->id);
 
         if (request('status') && request('status') != 'all') {
             if (request('status') == 'done') {
